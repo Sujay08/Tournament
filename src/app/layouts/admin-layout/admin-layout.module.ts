@@ -19,6 +19,7 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { ProfilesComponent } from '../../profiles/profiles.component';
 import { FIFAComponent } from '../../fifa/fifa.component';
 import { NBAComponent } from '../../nba/nba.component';
+import { FixturesComponent } from '../../fixtures/fixtures.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { NBAComponent } from '../../nba/nba.component';
     ProfilesComponent,
     FIFAComponent,
     NBAComponent,
+    FixturesComponent,
   ]
 })
 

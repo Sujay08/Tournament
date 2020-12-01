@@ -11,6 +11,7 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { FIFAComponent } from '../../fifa/fifa.component';
 import { NBAComponent } from '../../nba/nba.component';
 import { ProfilesComponent } from '../../profiles/profiles.component';
+import { FixturesComponent } from '../../fixtures/fixtures.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: HomeComponent },
@@ -24,4 +25,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'fifa',        component: FIFAComponent },
     { path: 'nba',        component: NBAComponent },
     { path: 'profiles',        component: ProfilesComponent },
+    { path: 'fixtures',        component: FixturesComponent },
 ];
