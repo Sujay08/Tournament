@@ -14,29 +14,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
+                <tr *ngFor="let fifa of fifaDetails; let i = index">
+                    <td>{{i +1}}</td>
                     <td>
-                        <img src="../../assets/img/tournament/vikas.jpg" class="profile-img" alt="">
-                        Vikas
+                        <img src="{{fifa.user_img}}" class="profile-img" alt="">
+                        {{fifa?.user_name}}
                     </td>
-                    <td>5</td>
-                    <td>3</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>7</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>
-                        <img src="" alt="">
-                        Vikas
-                    </td>
-                    <td>5</td>
-                    <td>3</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>7</td>
+                    <td>{{fifa?.fifa_played}}</td>
+                    <td>{{fifa?.fifa_won}}</td>
+                    <td>{{fifa?.fifa_draw}}</td>
+                    <td>{{fifa?.fifa_lost}}</td>
+                    <td>{{fifa?.points_fifa}}</td>
                 </tr>
             </tbody>
         </table>

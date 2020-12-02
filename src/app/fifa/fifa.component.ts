@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from "../services/http/api.service";
+import { ApiConfiguration } from "../services/http/api-configuration";
 
 @Component({
   selector: 'app-fifa',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FIFAComponent implements OnInit {
 
-  constructor() { }
+  fifaDetails: any = [];
+
+  constructor(
+    private apiService: ApiService,
+    private apiConfig: ApiConfiguration
+  ) { }
 
   ngOnInit(): void {
+    this.getTableDetails();
+  }
+
+  getTableDetails(){
+    let url = this.apiConfig.baseUrl + this.apiConfig.fifaTable;
+    this.apiService.get(url)
+    .subscribe((res:any)=>{
+      this.fifaDetails = res.data;
+      console.log(res)
+    },err=>{
+      console.log(err);
+    })
   }
 
 }

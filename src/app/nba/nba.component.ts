@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from "../services/http/api.service";
+import { ApiConfiguration } from "../services/http/api-configuration";
 
 @Component({
   selector: 'app-nba',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NBAComponent implements OnInit {
 
-  constructor() { }
+  nbaDetails: any = [];
+
+  constructor(
+    private apiService: ApiService,
+    private apiConfig: ApiConfiguration
+  ) { }
 
   ngOnInit(): void {
+    this.getTableDetails();
+  }
+
+  getTableDetails(){
+    let url = this.apiConfig.baseUrl + this.apiConfig.nbaTable;
+    this.apiService.get(url)
+    .subscribe((res:any)=>{
+      this.nbaDetails = res.data;
+      console.log(res)
+    },err=>{
+      console.log(err);
+    })
   }
 
 }

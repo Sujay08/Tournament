@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const apiRouter = require('./routes/index')
+const tableRouter = require ('./routes/table')
 const { ConditionalExpr } = require('@angular/compiler');
 const { title } = require('process');
 const app = express();
@@ -26,5 +27,6 @@ app.use((req, res, next) => {
       next();
     });
     
-app.use('/api/users', apiRouter)
+app.use('/api/users', apiRouter);
+app.use('/api/table', tableRouter);
 module.exports = app;
