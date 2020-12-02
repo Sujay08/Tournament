@@ -106,5 +106,53 @@ SELECT first_name, c.customer_id, order_id
 FROM orders o
 JOIN customers c ON o.customer_id = c.customer_id;
 
+SELECT * FROM orders WHERE order_data < '2019-01-01'
+
+Join tables from databases:
+SELECT * 
+FROM order_items oi
+Join sql_inventory.products p 
+    ON oi.product_id = p.product_id
+
+join table with itself
+SELECT e.employee_id, m.employee_id, e.first_name, m.first_name 
+FROM employees e
+JOIN employees m ON e.reports_to = m.employee_id;
+
+Outer Joins2 types: LEFT JOIN and RIGHT JOIN
+eg: say we get customers who have ordered something. thats a INNER JOINT. now what if we need to get all the customers. who have ordered and not ordered.
+
+SELECT first_name, c.customer_id, order_id 
+FROM orders o
+RIGHT JOIN customers c ON o.customer_id = c.customer_id; 
+
+first table is LEFT and second table is RIGHT
+SELF OUTER JOINSsay we need to get all employees mapped to a manager. but we want to see the manager name also in the result. now we have to use a SELF OUTER JOINT
+SELECT *
+FROM employee e
+LEFT JOIN employee m
+	ON e.reports_to = m.employee_id;
+
+USING ClausInstead of using ON when JOIN we can use USING, eg:JOIN x USING (y_id)
+CROSS JOINmatch every customer with every productSELECT c.first_name, p.name AS product_nameFROM customers cCROSS JOIN products p
+UNIONcombining 2 conditions
+SELECT order_id, order_date, 'ACTIVE' AS status 
+FROM orders
+WHERE order_date >= '2019-01-01'
+UNION
+SELECT order_id, order_date, 'ARCHIVE' AS status 
+FROM orders
+WHERE order_date < '2019-01-01'
+
+Inserting into single rowINSERT INTO customers(keys)  VALUES (DEFAULT, 'value x', NULL);
+Inserting into multiple rowINSERT INTO customers(keys)  VALUES (DEFAULT, 'value x', NULL),      (DEFAULT, 'value x', NULL),       (DEFAULT, 'value x', NULL),       (DEFAULT, 'value x', NULL);
+
+LAST_INSERTED_ID()
+
+Make a copy of a tableCREATE TABLE orders_archived AS SELECT * FROM orders(Table properties like AI , NN and PK will not be copied. only the data)  
+Using SELECT as SUB QUERYINSERT INTO orders_archived
+update a row:UPDATE invoices
+SET payment_total = 10, payment_date = '2019-03-01'
+WHERE invoice_id = 1
 
 
