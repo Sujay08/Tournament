@@ -5,8 +5,8 @@
                 <div class="fixture-card">
                     <div class="row flex-v">
                         <div class="col-lg-4 col-md-4">
-                            <img src="../../assets/img/tournament/harshith.jpg" alt="">
-                            <p>Harshith</p>
+                            <img src="{{profileDetails[fixture?.home_user_id - 1]?.user_img}}" alt="">
+                            <p>{{profileDetails[fixture?.home_user_id - 1]?.user_name}}</p>
                         </div>
                         <div class="col-lg-4 col-md-4">
                             <h4>
@@ -15,8 +15,8 @@
                             <h6>4 - 3</h6>
                         </div>
                         <div class="col-lg-4 col-md-4">
-                            <img src="../../assets/img/tournament/harshith.jpg" alt="">
-                            <p>Harshith</p>
+                            <img src="{{profileDetails[fixture?.away_user_id - 1]?.user_img}}" alt="">
+                            <p>{{profileDetails[fixture?.away_user_id - 1]?.user_name}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -24,12 +24,15 @@
                             <input type="text" class="" [(ngModel)]="formData.home_score">
                         </div>
                         <div class="col-lg-4 my-auto">
-                            <button class="btn btn-sm btn-success" (click)="enterMatchScore()">
-                                Submit
-                            </button>
+                            
                         </div>
                         <div class="col-lg-4 my-auto">
                             <input type="text" class="" [(ngModel)]="formData.away_score">
+                        </div>
+                        <div class="col-12 text-center">
+                            <button class="btn btn-sm btn-success" (click)="enterMatchScore()">
+                                Submit
+                            </button>
                         </div>
                     </div>
                 </div>

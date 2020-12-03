@@ -39,6 +39,7 @@
     border: 1px solid #ccc;
     padding: 5px;
     max-width: 100px;
+    border-radius: 5px;
 }
 
 .flex-v{

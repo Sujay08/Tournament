@@ -5,16 +5,8 @@ const connection = require('../../connection')
 
 router.get('/fifa', function(req,res){
     connection.query(
-            `SELECT 
-            fixtures_id,
-            home_user_id,
-            away_user_id,
-            winner_user_id,
-            user_name AS home_user_name,
-            user_img AS home_user_img
-            FROM fixtures_fifa ff
-            JOIN Users u
-                ON ff.away_user_id = u.user_id;` , 
+            `SELECT *
+            FROM fixtures_fifa` ,
     (err, rows, fields)=>{
         if(err){
             console.log(err);

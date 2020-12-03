@@ -11,7 +11,7 @@ export class FixturesComponent implements OnInit {
 
   formData: any = {};
   fixtureDetails: any = [];
-
+  profileDetails: any = [];
   constructor(
     private apiService: ApiService,
     private apiConfig: ApiConfiguration
@@ -27,6 +27,18 @@ export class FixturesComponent implements OnInit {
     .subscribe((res:any)=>{
       this.fixtureDetails = res.data;
       console.log(res)
+      this.getProfileDetails();
+    },err=>{
+      console.log(err);
+    })
+  }
+
+  getProfileDetails(){
+    let url = this.apiConfig.baseUrl + this.apiConfig.allUsers;
+    this.apiService.get(url)
+    .subscribe((res:any)=>{
+      this.profileDetails = res.data;
+      console.log(res);
     },err=>{
       console.log(err);
     })
