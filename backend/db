@@ -133,7 +133,7 @@ FROM employee e
 LEFT JOIN employee m
 	ON e.reports_to = m.employee_id;
 
-USING ClausInstead of using ON when JOIN we can use USING, eg:JOIN x USING (y_id)
+USING Claus Instead of using ON when JOIN we can use USING, eg:JOIN x USING (y_id)
 CROSS JOINmatch every customer with every productSELECT c.first_name, p.name AS product_nameFROM customers cCROSS JOIN products p
 UNIONcombining 2 conditions
 SELECT order_id, order_date, 'ACTIVE' AS status 
@@ -144,8 +144,11 @@ SELECT order_id, order_date, 'ARCHIVE' AS status
 FROM orders
 WHERE order_date < '2019-01-01'
 
-Inserting into single rowINSERT INTO customers(keys)  VALUES (DEFAULT, 'value x', NULL);
-Inserting into multiple rowINSERT INTO customers(keys)  VALUES (DEFAULT, 'value x', NULL),      (DEFAULT, 'value x', NULL),       (DEFAULT, 'value x', NULL),       (DEFAULT, 'value x', NULL);
+Inserting into single row
+INSERT INTO customers(keys)  VALUES (DEFAULT, 'value x', NULL);
+
+Inserting into multiple row
+INSERT INTO customers(keys)  VALUES (DEFAULT, 'value x', NULL),      (DEFAULT, 'value x', NULL),       (DEFAULT, 'value x', NULL),       (DEFAULT, 'value x', NULL);
 
 LAST_INSERTED_ID()
 
