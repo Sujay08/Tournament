@@ -1,7 +1,7 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6 col-md-12">
+            <div class="col-lg-6 col-md-12" *ngFor="let fixture of fixtureDetails">
                 <div class="fixture-card">
                     <div class="row flex-v">
                         <div class="col-lg-4 col-md-4">
@@ -21,15 +21,15 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4 my-auto">
-                            <input type="text" class="">
+                            <input type="text" class="" [(ngModel)]="formData.home_score">
                         </div>
                         <div class="col-lg-4 my-auto">
-                            <button class="btn btn-sm btn-success">
+                            <button class="btn btn-sm btn-success" (click)="enterMatchScore()">
                                 Submit
                             </button>
                         </div>
                         <div class="col-lg-4 my-auto">
-                            <input type="text" class="">
+                            <input type="text" class="" [(ngModel)]="formData.away_score">
                         </div>
                     </div>
                 </div>

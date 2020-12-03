@@ -9,6 +9,8 @@ export class ApiConfiguration {
     allUsers = "users/all";     
     fifaTable = "table/fifa"; 
     nbaTable = "table/nba"; 
+    fixturesFifa = "fixture/fifa";
+    fifaScore = "fixture/fifa/score"
 }
 
 // export interface ApiConfigurationInterface {    } 
