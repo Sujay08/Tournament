@@ -22,6 +22,7 @@ export class FixturesComponent implements OnInit {
     this.getFifaFixtureDetails();
     this.formData.home_score = '';
     this.formData.away_score = '';
+    document.getElementById('pills-home-tab').click();
   }
 
   getFifaFixtureDetails() {
@@ -47,7 +48,7 @@ export class FixturesComponent implements OnInit {
       })
   }
 
-  enterMatchScore(fixture) {
+  enterMatchScore(fixture, i) {
     this.formData.fixtures_id = fixture.fixtures_id;
     this.formData.home_user_id = fixture.home_user_id;
     this.formData.away_user_id = fixture.away_user_id;
@@ -65,6 +66,7 @@ export class FixturesComponent implements OnInit {
     this.apiService.post(url, this.formData)
       .subscribe((res: any) => {
         console.log(res)
+        this.hideme[i] = !this.hideme[i];
       }, err => {
         console.log(err);
       })

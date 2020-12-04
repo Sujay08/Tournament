@@ -58,8 +58,14 @@ router.post('/fifa/score',(req, res) => {
     
             UPDATE fixtures_fifa
                 SET 
-            winner_user_id = ${data.winner_user_id}
+            winner_user_id = ${data.winner_user_id},
+            home_score = ${data.home_score},
+            away_score = ${data.away_score}
             WHERE fixtures_id = ${data.fixtures_id};
+
+            UPDATE points 
+                SET points_fifa = points_fifa + 2
+            WHERE user_id = ${data.winner_user_id};
         `;
     }else{
         sql = `
@@ -69,6 +75,10 @@ router.post('/fifa/score',(req, res) => {
                   fifa_draw = fifa_draw + 1
               WHERE
                   user_id IN ( ${data.home_user_id}, ${data.away_user_id} );     
+
+        UPDATE points 
+            SET points_fifa = points_fifa + 1
+            WHERE user_id IN (${data.winner_user_id}, ${data.away_user_id});
          `
     }
     let query = connection.query(sql, data,(err, results) => {

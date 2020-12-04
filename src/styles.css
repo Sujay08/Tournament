@@ -6,3 +6,7 @@
 .danger{
     color: #E63D3C; 
 }
+
+.pointer{
+    cursor: pointer; 
+}

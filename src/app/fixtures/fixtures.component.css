@@ -47,3 +47,27 @@
     align-items: center;
     flex-wrap: wrap;
 }
+
+.pointer{
+    cursor: pointer;   
+}
+
+.nav-pills{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+
+.nav-pills>li>a {
+    color: #F9454A;
+    padding: 3px 45px;
+    border: 2px solid #F9454A
+}
+
+.nav-pills>li.active>a {
+    color: #fff;
+    background-color: #F9454A;
+    padding: 3px 45px;
+}
