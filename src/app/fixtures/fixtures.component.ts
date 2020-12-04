@@ -8,10 +8,11 @@ import { ApiConfiguration } from "../services/http/api-configuration";
   styleUrls: ['./fixtures.component.css']
 })
 export class FixturesComponent implements OnInit {
-
+  showInputs: boolean = true;
   formData: any = {};
   fixtureDetails: any = [];
   profileDetails: any = [];
+  hideme=[]
   constructor(
     private apiService: ApiService,
     private apiConfig: ApiConfiguration
@@ -68,5 +69,9 @@ export class FixturesComponent implements OnInit {
         console.log(err);
       })
   }
+
+  ToggleInput(){
+    this.showInputs = !this.showInputs;
+  };
 
 }

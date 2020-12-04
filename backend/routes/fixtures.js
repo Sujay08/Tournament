@@ -68,14 +68,7 @@ router.post('/fifa/score',(req, res) => {
                   fifa_played = fifa_played + 1,
                   fifa_draw = fifa_draw + 1
               WHERE
-                  user_id IN ( ${data.home_user_id}, ${data.away_user_id} );
-
-            // UPDATE game_details 
-            //   SET 
-            //       fifa_played = fifa_played + 1,
-            //       fifa_draw = fifa_draw + 1
-            //   WHERE
-            //     user_id = ${data.away_user_id};
+                  user_id IN ( ${data.home_user_id}, ${data.away_user_id} );     
          `
     }
     let query = connection.query(sql, data,(err, results) => {
@@ -85,6 +78,13 @@ router.post('/fifa/score',(req, res) => {
 });
 
 module.exports = router;
+
+// UPDATE game_details 
+            //   SET 
+            //       fifa_played = fifa_played + 1,
+            //       fifa_draw = fifa_draw + 1
+            //   WHERE
+            //     user_id = ${data.away_user_id};
 
 // UPDATE game_details 
 //         SET 
