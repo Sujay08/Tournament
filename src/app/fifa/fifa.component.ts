@@ -25,7 +25,7 @@ export class FIFAComponent implements OnInit {
     this.apiService.get(url)
     .subscribe((res:any)=>{
       this.fifaDetails = res.data;
-      console.log(res)
+      console.log(this.fifaDetails)
     },err=>{
       console.log(err);
     })

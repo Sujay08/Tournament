@@ -30,7 +30,7 @@ export class FixturesComponent implements OnInit {
     this.apiService.get(url)
       .subscribe((res: any) => {
         this.fixtureDetails = res.data;
-        console.log(res)
+        console.log(this.fixtureDetails)
         this.getProfileDetails();
       }, err => {
         console.log(err);
@@ -56,9 +56,13 @@ export class FixturesComponent implements OnInit {
     if (this.formData.home_score > this.formData.away_score) {
       this.formData.winner_user_id = fixture.home_user_id;
       this.formData.loser_user_id = fixture.away_user_id;
+      this.formData.winning_score = this.formData.home_score;
+      this.formData.loosing_score = this.formData.away_score;
     } else if (this.formData.home_score < this.formData.away_score) {
       this.formData.winner_user_id = fixture.away_user_id;
       this.formData.loser_user_id = fixture.home_user_id;
+      this.formData.winning_score = this.formData.away_score;
+      this.formData.loosing_score = this.formData.home_score;
     } else {
       this.formData.winner_user_id = 0;
     }
@@ -67,13 +71,18 @@ export class FixturesComponent implements OnInit {
       .subscribe((res: any) => {
         console.log(res)
         this.hideme[i] = !this.hideme[i];
+        this.getFifaFixtureDetails();
+        this.formData.home_score = '';
+        this.formData.away_score = '';
       }, err => {
         console.log(err);
       })
   }
 
-  ToggleInput(){
-    this.showInputs = !this.showInputs;
+  ToggleInput(i){
+    this.hideme[i] = !this.hideme[i]
+    this.formData.home_score = '';
+    this.formData.away_score = '';
   };
 
 }
