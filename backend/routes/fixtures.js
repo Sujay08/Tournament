@@ -22,7 +22,10 @@ router.get('/fifa', function(req,res){
 
 router.get('/nba', function(req,res){
     connection.query(
-    `` , 
+    `
+    SELECT *
+        FROM fixtures_nba
+    ` , 
     (err, rows, fields)=>{
         if(err){
             console.log(err);
@@ -68,7 +71,7 @@ router.post('/fifa/score',(req, res) => {
             WHERE fixtures_id = ${data.fixtures_id};
 
             UPDATE points 
-                SET points_fifa = points_fifa + 2
+                SET points_fifa = points_fifa + 3
             WHERE user_id = ${data.winner_user_id};
         `;
     }else{

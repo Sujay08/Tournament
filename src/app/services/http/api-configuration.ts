@@ -10,6 +10,7 @@ export class ApiConfiguration {
     fifaTable = "table/fifa"; 
     nbaTable = "table/nba"; 
     fixturesFifa = "fixture/fifa";
+    fixturesNba = "fixture/nba";
     fifaScore = "fixture/fifa/score"
 }
 

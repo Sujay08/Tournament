@@ -10,7 +10,7 @@
             </li>
             <li class="nav-item" role="presentation">
                 <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
-                    aria-controls="pills-profile" aria-selected="false">
+                    aria-controls="pills-profile" aria-selected="false" >
                     NBA
                 </a>
             </li>
@@ -75,7 +75,57 @@
             </div>
             <!-- NBA TAB -->
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 d-flex align-items-stretch"
+                        *ngFor="let fixture of fixtureDetailsNba; let i = index">
+                        <div class="fixture-card">
+                            <div class="row flex-v pointer" (click)="ToggleInput(i)">
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="img-holder">
+                                        <img src="{{profileDetails[fixture?.home_user_id - 1]?.user_img}}" alt=""
+                                            class="profile-img">
+                                        <img src="../../assets/img/tournament/tick.png" alt="" class="win-marker"
+                                            *ngIf="fixture.winner_user_id == fixture.home_user_id">
+                                    </div>
+                                    <p>{{profileDetails[fixture?.home_user_id - 1]?.user_name}}</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <h4>
+                                        VS
+                                    </h4>
+                                    <h6 *ngIf="fixture.winner_user_id != null">
+                                        {{fixture?.home_score}} - {{fixture?.away_score}}
+                                    </h6>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="img-holder">
+                                        <img src="{{profileDetails[fixture?.away_user_id - 1]?.user_img}}" alt=""
+                                            class="profile-img">
+                                        <img src="../../assets/img/tournament/tick.png" alt="" class="win-marker"
+                                            *ngIf="fixture.winner_user_id == fixture.away_user_id">
+                                    </div>
+                                    <p>{{profileDetails[fixture?.away_user_id - 1]?.user_name}}</p>
+                                </div>
+                            </div>
+                            <div class="row" [hidden]="!hideme[i]">
+                                <div class="col-lg-4 my-auto">
+                                    <input type="number" class="" [(ngModel)]="formData.home_score">
+                                </div>
+                                <div class="col-lg-4 my-auto">
 
+                                </div>
+                                <div class="col-lg-4 my-auto">
+                                    <input type="number" class="" [(ngModel)]="formData.away_score">
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-sm btn-success" (click)="enterMatchScore(fixture, i)">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

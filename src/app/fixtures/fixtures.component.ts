@@ -11,6 +11,7 @@ export class FixturesComponent implements OnInit {
   showInputs: boolean = true;
   formData: any = {};
   fixtureDetails: any = [];
+  fixtureDetailsNba: any = [];
   profileDetails: any = [];
   hideme=[]
   constructor(
@@ -23,6 +24,7 @@ export class FixturesComponent implements OnInit {
     this.formData.home_score = '';
     this.formData.away_score = '';
     document.getElementById('pills-home-tab').click();
+    this.getNBAFixtureDetails();
   }
 
   getFifaFixtureDetails() {
@@ -84,5 +86,18 @@ export class FixturesComponent implements OnInit {
     this.formData.home_score = '';
     this.formData.away_score = '';
   };
+
+  // NBA
+
+  getNBAFixtureDetails() {
+    let url = this.apiConfig.baseUrl + this.apiConfig.fixturesNba;
+    this.apiService.get(url)
+      .subscribe((res: any) => {
+        this.fixtureDetailsNba = res.data;
+        console.log(this.fixtureDetailsNba)
+      }, err => {
+        console.log(err);
+      })
+  }
 
 }
