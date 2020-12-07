@@ -10,6 +10,7 @@ import { ApiConfiguration } from "../services/http/api-configuration";
 export class FixturesComponent implements OnInit {
   showInputs: boolean = true;
   formData: any = {};
+  formDataNba: any = {};
   fixtureDetails: any = [];
   fixtureDetailsNba: any = [];
   profileDetails: any = [];
@@ -81,10 +82,41 @@ export class FixturesComponent implements OnInit {
       })
   }
 
+  enterMatchScoreNba(fixture, i) {
+    this.formDataNba.fixtures_id = fixture.fixtures_id;
+    this.formDataNba.home_user_id = fixture.home_user_id;
+    this.formDataNba.away_user_id = fixture.away_user_id;
+    console.log(this.formDataNba)
+    if (this.formDataNba.home_score > this.formDataNba.away_score) {
+      this.formDataNba.winner_user_id = fixture.home_user_id;
+      this.formDataNba.loser_user_id = fixture.away_user_id;
+      this.formDataNba.winning_score = this.formDataNba.home_score;
+      this.formDataNba.loosing_score = this.formDataNba.away_score;
+    } else if (this.formDataNba.home_score < this.formDataNba.away_score) {
+      this.formDataNba.winner_user_id = fixture.away_user_id;
+      this.formDataNba.loser_user_id = fixture.home_user_id;
+      this.formDataNba.winning_score = this.formDataNba.away_score;
+      this.formDataNba.loosing_score = this.formDataNba.home_score;
+    }
+    let url = this.apiConfig.baseUrl + this.apiConfig.nbaScore;
+    this.apiService.post(url, this.formDataNba)
+      .subscribe((res: any) => {
+        console.log(res)
+        this.hideme[i] = !this.hideme[i];
+        this.getNBAFixtureDetails();
+        this.formDataNba.home_score = '';
+        this.formDataNba.away_score = '';
+      }, err => {
+        console.log(err);
+      })
+  }
+
   ToggleInput(i){
     this.hideme[i] = !this.hideme[i]
     this.formData.home_score = '';
     this.formData.away_score = '';
+    this.formDataNba.home_score = '';
+    this.formDataNba.away_score = '';
   };
 
   // NBA

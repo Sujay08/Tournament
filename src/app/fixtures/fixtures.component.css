@@ -86,3 +86,11 @@
     background-color: #F9454A;
     padding: 3px 45px;
 }
+
+.tab-content>.tab-pane {
+    display: none;
+}
+
+.tab-content>.active {
+    display: block;
+}

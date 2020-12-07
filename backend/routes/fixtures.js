@@ -103,6 +103,46 @@ router.post('/fifa/score',(req, res) => {
     });
 });
 
+router.post('/nba/score',(req, res) => {
+    let data = req.body;
+    // console.log(data)
+    let sql = `
+         UPDATE game_details 
+             SET 
+                 nba_played = nba_played + 1,
+                 nba_won = nba_won + 1,
+                 nba_ps = nba_ps + ${data.winning_score},
+                 nba_pc = nba_pc + ${data.loosing_score}
+             WHERE
+                 user_id = ${data.winner_user_id};
+    
+        UPDATE game_details 
+             SET 
+                 nba_played = nba_played + 1,
+                 nba_lost = nba_lost + 1,
+                 nba_ps = nba_ps + ${data.loosing_score},
+                 nba_pc = nba_pc + ${data.winning_score}
+             WHERE
+                 user_id = ${data.loser_user_id};
+                 
+    
+            UPDATE fixtures_nba
+                SET 
+            winner_user_id = ${data.winner_user_id},
+            home_score = ${data.home_score},
+            away_score = ${data.away_score}
+            WHERE fixtures_id = ${data.fixtures_id};
+
+            UPDATE points 
+                SET points_nba = points_nba + 2
+            WHERE user_id = ${data.winner_user_id};
+        `;
+    let query = connection.query(sql, data,(err, results) => {
+      if(err) throw err;
+      res.send(JSON.stringify({"status": 200, "error": null, "response": 'success'}));
+    });
+});
+
 module.exports = router;
 
 // UPDATE game_details 
