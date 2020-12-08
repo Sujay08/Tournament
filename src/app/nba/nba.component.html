@@ -11,13 +11,14 @@
                     <th>L</th>
                     <th>PS</th>
                     <th>PC</th>
+                    <th>PD</th>
                     <th>Pts</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let nba of nbaDetails; let i = index">
                     <td>{{i +1}}</td>
-                    <td>
+                    <td style="min-width: 189px;">
                         <img src="{{nba.user_img}}" class="profile-img" alt="">
                         {{nba?.user_name}}
                     </td>
@@ -26,7 +27,8 @@
                     <td>{{nba?.nba_lost}}</td>
                     <td>{{nba?.nba_ps}}</td>
                     <td>{{nba?.nba_pc}}</td>
-                    <td>{{nba?.points_nba}}</td>
+                    <td>{{nba?.nba_pd}}</td>
+                    <td><b>{{nba?.points_nba}}</b></td>
                 </tr>
             </tbody>
         </table>

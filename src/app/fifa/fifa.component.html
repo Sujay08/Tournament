@@ -12,13 +12,14 @@
                     <th>L</th>
                     <th>GS</th>
                     <th>GC</th>
+                    <th>GD</th>
                     <th>Pts</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let fifa of fifaDetails; let i = index">
                     <td>{{i +1}}</td>
-                    <td>
+                    <td style="min-width: 189px;">
                         <img src="{{fifa.user_img}}" class="profile-img" alt="">
                         {{fifa?.user_name}}
                     </td>
@@ -28,6 +29,7 @@
                     <td>{{fifa?.fifa_lost}}</td>
                     <td>{{fifa?.fifa_gs}}</td>
                     <td>{{fifa?.fifa_gc}}</td>
+                    <td>{{fifa?.fifa_gd}}</td>
                     <td><b>{{fifa.points_fifa}}</b></td>
                 </tr>
             </tbody>

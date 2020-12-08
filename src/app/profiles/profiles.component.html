@@ -21,13 +21,25 @@
                                     <span class="danger">{{game?.nba_lost + game?.fifa_lost}}</span>
                                 </p>
                             </div>
+                            <div class="col-lg-6">
+                                <p>Total Goals FIFA</p>
+                                <p>
+                                    <span class="">{{game?.fifa_gs}}</span>
+                                </p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p>Total Points NBA</p>
+                                <p>
+                                    <span class="">{{game?.nba_ps}}</span>
+                                </p>
+                            </div>
                             <div class="col-12">
                                 <p class="text-center">
                                     <small>Win percentage</small>
                                 </p>
                                 <div class="progress"> 
                                     <div class="progress-bar bg-success" role="progressbar" style="width: {{winPrecentage[i]}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                        {{winPrecentage[i]}}%
+                                        {{winPrecentage[i] | number : '1.1-1'}}%
                                     </div>
                                 </div>
                             </div>

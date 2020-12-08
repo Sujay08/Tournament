@@ -49,7 +49,8 @@ router.post('/fifa/score',(req, res) => {
                  fifa_played = fifa_played + 1,
                  fifa_won = fifa_won + 1,
                  fifa_gs = fifa_gs + ${data.winning_score},
-                 fifa_gc = fifa_gc + ${data.loosing_score}
+                 fifa_gc = fifa_gc + ${data.loosing_score},
+                 fifa_gd = fifa_gs - fifa_gc
              WHERE
                  user_id = ${data.winner_user_id};
     
@@ -58,7 +59,8 @@ router.post('/fifa/score',(req, res) => {
                  fifa_played = fifa_played + 1,
                  fifa_lost = fifa_lost + 1,
                  fifa_gs = fifa_gs + ${data.loosing_score},
-                 fifa_gc = fifa_gc + ${data.winning_score}
+                 fifa_gc = fifa_gc + ${data.winning_score},
+                 fifa_gd = fifa_gs - fifa_gc
              WHERE
                  user_id = ${data.loser_user_id};
                  
@@ -81,7 +83,8 @@ router.post('/fifa/score',(req, res) => {
                   fifa_played = fifa_played + 1,
                   fifa_draw = fifa_draw + 1,
                   fifa_gs = fifa_gs + ${data.home_score},
-                  fifa_gc = fifa_gc + ${data.home_score}
+                  fifa_gc = fifa_gc + ${data.home_score},
+                  fifa_gd = fifa_gs - fifa_gc
               WHERE
                   user_id IN ( ${data.home_user_id}, ${data.away_user_id} );   
                   
@@ -112,7 +115,9 @@ router.post('/nba/score',(req, res) => {
                  nba_played = nba_played + 1,
                  nba_won = nba_won + 1,
                  nba_ps = nba_ps + ${data.winning_score},
-                 nba_pc = nba_pc + ${data.loosing_score}
+                 nba_pc = nba_pc + ${data.loosing_score},
+                 nba_pd = nba_ps - nba_pc
+
              WHERE
                  user_id = ${data.winner_user_id};
     
@@ -121,7 +126,8 @@ router.post('/nba/score',(req, res) => {
                  nba_played = nba_played + 1,
                  nba_lost = nba_lost + 1,
                  nba_ps = nba_ps + ${data.loosing_score},
-                 nba_pc = nba_pc + ${data.winning_score}
+                 nba_pc = nba_pc + ${data.winning_score},
+                 nba_pd = nba_ps - nba_pc
              WHERE
                  user_id = ${data.loser_user_id};
                  

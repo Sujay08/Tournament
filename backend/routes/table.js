@@ -11,7 +11,7 @@ router.get('/fifa', function(req,res){
         ON u.user_id = gd.user_id 
     JOIN points p 
         ON u.user_id = p.user_id 
-    ORDER BY points_fifa DESC` , 
+    ORDER BY points_fifa DESC, fifa_gd DESC` , 
     (err, rows, fields)=>{
         if(err){
             console.log(err);
@@ -32,7 +32,7 @@ router.get('/nba', function(req,res){
         ON u.user_id = gd.user_id 
     JOIN points p 
         ON u.user_id = p.user_id 
-    ORDER BY points_nba DESC` , 
+    ORDER BY points_nba DESC, nba_pd DESC` , 
     (err, rows, fields)=>{
         if(err){
             console.log(err);
