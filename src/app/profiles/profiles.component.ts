@@ -9,14 +9,29 @@ import { ApiConfiguration } from "../services/http/api-configuration";
 export class ProfilesComponent implements OnInit {
 
   profileDetails: any =[];
-
+  allGameDetails: any = [];
+  winPrecentage = [];
+  percentage;
   constructor(
     private apiService: ApiService,
     private apiConfig: ApiConfiguration
   ) { }
 
   ngOnInit(): void {
-    this.getProfileDetails();
+    this.getTableDetails()
+  }
+
+  getTableDetails(){
+    let url = this.apiConfig.baseUrl + this.apiConfig.allGames;
+    this.apiService.get(url)
+    .subscribe((res:any)=>{
+      this.allGameDetails = res.data;
+      this.getProfileDetails();
+      this.winPercentage();
+      console.log(this.allGameDetails)
+    },err=>{
+      console.log(err);
+    })
   }
 
   getProfileDetails(){
@@ -28,6 +43,16 @@ export class ProfilesComponent implements OnInit {
     },err=>{
       console.log(err);
     })
+  }
+
+  winPercentage(){
+    this.allGameDetails.forEach(game => {
+    this.percentage = ((game.nba_won + game.fifa_won)/(game.nba_played + game.fifa_played)) * 100  
+      if(isNaN(this.percentage)){
+        this.percentage = 0
+      }
+      this.winPrecentage.push(this.percentage);
+    });
   }
 
 }

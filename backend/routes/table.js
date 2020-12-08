@@ -45,4 +45,21 @@ router.get('/nba', function(req,res){
     })
 });
 
+router.get('/all-games', function(req,res){
+    connection.query(
+    `SELECT * FROM game_details gd
+    JOIN points p
+    ON gd.user_id = p.user_id` , 
+    (err, rows, fields)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.json({
+                message: "success",
+                data: rows
+            });
+        }
+    })
+});
+
 module.exports = router;

@@ -8,6 +8,7 @@ export class ApiConfiguration {
     baseUrl ='http://localhost:3000/api/';
     allUsers = "users/all";     
     fifaTable = "table/fifa"; 
+    allGames = "table/all-games"
     fixturesFifa = "fixture/fifa";
     fixturesNba = "fixture/nba";
     fifaScore = "fixture/fifa/score";

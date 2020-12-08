@@ -15,6 +15,9 @@ export class FixturesComponent implements OnInit {
   fixtureDetailsNba: any = [];
   profileDetails: any = [];
   hideme=[]
+  Lfifa: boolean = false;
+  Lnba: boolean = true;
+
   constructor(
     private apiService: ApiService,
     private apiConfig: ApiConfiguration
@@ -26,6 +29,16 @@ export class FixturesComponent implements OnInit {
     this.formData.away_score = '';
     document.getElementById('pills-home-tab').click();
     this.getNBAFixtureDetails();
+  }
+
+  fifaTab(){
+    this.Lfifa = false;
+    this.Lnba = true
+  }
+
+  nbaTab(){
+    this.Lfifa = true;
+    this.Lnba = false
   }
 
   getFifaFixtureDetails() {

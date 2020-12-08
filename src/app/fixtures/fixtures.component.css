@@ -94,3 +94,12 @@
 .tab-content>.active {
     display: block;
 }
+
+
+
+.logoImg{
+    width: 65px;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+}
