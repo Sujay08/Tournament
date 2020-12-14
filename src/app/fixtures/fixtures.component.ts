@@ -24,21 +24,32 @@ export class FixturesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.clickActiveTab();
     this.getFifaFixtureDetails();
+    this.getNBAFixtureDetails();
     this.formData.home_score = '';
     this.formData.away_score = '';
-    document.getElementById('pills-home-tab').click();
-    this.getNBAFixtureDetails();
   }
 
   fifaTab(){
     this.Lfifa = false;
-    this.Lnba = true
+    this.Lnba = true;
+    localStorage.setItem('activeTab', 'fifa');
   }
 
   nbaTab(){
     this.Lfifa = true;
-    this.Lnba = false
+    this.Lnba = false;
+    localStorage.setItem('activeTab', 'nba');
+  }
+
+  clickActiveTab(){
+    let activeTab = localStorage.getItem('activeTab')
+    if(activeTab == 'fifa'){
+      document.getElementById('fifaTab').click();
+    } else if(activeTab == 'nba'){
+      document.getElementById('nbaTab').click();
+    }
   }
 
   getFifaFixtureDetails() {
@@ -46,7 +57,6 @@ export class FixturesComponent implements OnInit {
     this.apiService.get(url)
       .subscribe((res: any) => {
         this.fixtureDetails = res.data;
-        console.log(this.fixtureDetails)
         this.getProfileDetails();
       }, err => {
         console.log(err);
@@ -58,7 +68,6 @@ export class FixturesComponent implements OnInit {
     this.apiService.get(url)
       .subscribe((res: any) => {
         this.profileDetails = res.data;
-        console.log(res);
       }, err => {
         console.log(err);
       })
@@ -68,7 +77,6 @@ export class FixturesComponent implements OnInit {
     this.formData.fixtures_id = fixture.fixtures_id;
     this.formData.home_user_id = fixture.home_user_id;
     this.formData.away_user_id = fixture.away_user_id;
-    console.log(this.formData)
     if (this.formData.home_score > this.formData.away_score) {
       this.formData.winner_user_id = fixture.home_user_id;
       this.formData.loser_user_id = fixture.away_user_id;
@@ -85,7 +93,6 @@ export class FixturesComponent implements OnInit {
     let url = this.apiConfig.baseUrl + this.apiConfig.fifaScore;
     this.apiService.post(url, this.formData)
       .subscribe((res: any) => {
-        console.log(res)
         this.hideme[i] = !this.hideme[i];
         this.getFifaFixtureDetails();
         this.formData.home_score = '';
@@ -99,7 +106,6 @@ export class FixturesComponent implements OnInit {
     this.formDataNba.fixtures_id = fixture.fixtures_id;
     this.formDataNba.home_user_id = fixture.home_user_id;
     this.formDataNba.away_user_id = fixture.away_user_id;
-    console.log(this.formDataNba)
     if (this.formDataNba.home_score > this.formDataNba.away_score) {
       this.formDataNba.winner_user_id = fixture.home_user_id;
       this.formDataNba.loser_user_id = fixture.away_user_id;
@@ -114,7 +120,6 @@ export class FixturesComponent implements OnInit {
     let url = this.apiConfig.baseUrl + this.apiConfig.nbaScore;
     this.apiService.post(url, this.formDataNba)
       .subscribe((res: any) => {
-        console.log(res)
         this.hideme[i] = !this.hideme[i];
         this.getNBAFixtureDetails();
         this.formDataNba.home_score = '';
@@ -139,7 +144,6 @@ export class FixturesComponent implements OnInit {
     this.apiService.get(url)
       .subscribe((res: any) => {
         this.fixtureDetailsNba = res.data;
-        console.log(this.fixtureDetailsNba)
       }, err => {
         console.log(err);
       })

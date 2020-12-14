@@ -28,7 +28,6 @@ export class ProfilesComponent implements OnInit {
       this.allGameDetails = res.data;
       this.getProfileDetails();
       this.winPercentage();
-      console.log(this.allGameDetails)
     },err=>{
       console.log(err);
     })

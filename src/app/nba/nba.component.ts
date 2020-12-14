@@ -25,7 +25,6 @@ export class NBAComponent implements OnInit {
     this.apiService.get(url)
     .subscribe((res:any)=>{
       this.nbaDetails = res.data;
-      console.log(res)
     },err=>{
       console.log(err);
     })
